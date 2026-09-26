@@ -8,59 +8,355 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Amer Math Coach</title>
+  <title>Amer's Math Coach</title>
+
+  <style>
+
+    * {
+
+      box-sizing: border-box;
+
+    }
+
+    body {
+
+      margin: 0;
+
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+      background: linear-gradient(180deg, #eef8ff 0%, #f8fbff 100%);
+
+      color: #18324a;
+
+      min-height: 100vh;
+
+    }
+
+    .header {
+
+      background: linear-gradient(135deg, #1769aa, #2f8fce);
+
+      color: white;
+
+      padding: 28px 20px 36px;
+
+      text-align: center;
+
+      border-radius: 0 0 30px 30px;
+
+      box-shadow: 0 8px 25px rgba(23, 105, 170, 0.18);
+
+    }
+
+    .dino {
+
+      font-size: 64px;
+
+      margin-bottom: 8px;
+
+    }
+
+    .header h1 {
+
+      margin: 0;
+
+      font-size: 30px;
+
+    }
+
+    .header p {
+
+      margin: 8px 0 0;
+
+      opacity: 0.95;
+
+      font-size: 16px;
+
+    }
+
+    .container {
+
+      max-width: 720px;
+
+      margin: -18px auto 40px;
+
+      padding: 0 18px;
+
+    }
+
+    .card {
+
+      background: white;
+
+      border-radius: 24px;
+
+      padding: 24px;
+
+      box-shadow: 0 10px 35px rgba(24, 50, 74, 0.10);
+
+      margin-bottom: 18px;
+
+    }
+
+    .welcome {
+
+      text-align: center;
+
+    }
+
+    .welcome h2 {
+
+      margin-top: 0;
+
+      font-size: 24px;
+
+    }
+
+    .welcome p {
+
+      line-height: 1.6;
+
+      color: #557086;
+
+    }
+
+    label {
+
+      display: block;
+
+      font-weight: 700;
+
+      margin-bottom: 10px;
+
+      font-size: 17px;
+
+    }
+
+    textarea {
+
+      width: 100%;
+
+      min-height: 150px;
+
+      border: 2px solid #d7e6f2;
+
+      border-radius: 16px;
+
+      padding: 16px;
+
+      font-size: 17px;
+
+      resize: vertical;
+
+      outline: none;
+
+      font-family: inherit;
+
+    }
+
+    textarea:focus {
+
+      border-color: #2f8fce;
+
+      box-shadow: 0 0 0 4px rgba(47, 143, 206, 0.12);
+
+    }
+
+    .button {
+
+      width: 100%;
+
+      margin-top: 16px;
+
+      border: none;
+
+      border-radius: 16px;
+
+      padding: 16px;
+
+      font-size: 18px;
+
+      font-weight: 700;
+
+      color: white;
+
+      background: #1769aa;
+
+      cursor: pointer;
+
+    }
+
+    .button:active {
+
+      transform: scale(0.98);
+
+    }
+
+    .result {
+
+      margin-top: 18px;
+
+      padding: 18px;
+
+      background: #f0f8ff;
+
+      border-radius: 16px;
+
+      line-height: 1.6;
+
+      display: none;
+
+    }
+
+    .result h3 {
+
+      margin-top: 0;
+
+    }
+
+    .tip {
+
+      text-align: center;
+
+      font-size: 14px;
+
+      color: #71879a;
+
+    }
+
+    .footer {
+
+      text-align: center;
+
+      padding: 10px 20px 30px;
+
+      color: #71879a;
+
+      font-size: 13px;
+
+    }
+
+  </style>
 
 </head>
 
 <body>
 
-  <h1>🦖 Amer Math Coach</h1>
+  <header class="header">
 
-  <p>Welcome! Let's solve your math problem together.</p>
+    <div class="dino">🦖</div>
 
-  <h2>Enter your math problem</h2>
+    <h1>Amer's Math Coach</h1>
 
-  <textarea
+    <p>Learn it. Understand it. Solve it.</p>
 
-    id="problem"
+  </header>
 
-    rows="5"
+  <main class="container">
 
-    cols="40"
+    <section class="card welcome">
 
-    placeholder="Type your math problem here..."
+      <h2>Welcome, Amer! 👋</h2>
 
-  ></textarea>
+      <p>
 
-  <br><br>
+        I'm your math coach. We'll work through your homework
 
-  <button onclick="helpStudent()">Help Me</button>
+        together, one step at a time.
 
-  <div id="answer"></div>
+      </p>
+
+    </section>
+
+    <section class="card">
+
+      <label for="problem">
+
+        ✏️ What math problem are you working on?
+
+      </label>
+
+      <textarea
+
+        id="problem"
+
+        placeholder="Type your math problem here..."
+
+      ></textarea>
+
+      <button class="button" onclick="startProblem()">
+
+        🧠 Let's Solve It Together
+
+      </button>
+
+      <div class="result" id="result"></div>
+
+    </section>
+
+    <section class="card tip">
+
+      💡 Remember: making a mistake is part of learning!
+
+    </section>
+
+  </main>
+
+  <footer class="footer">
+
+    Amer's Math Coach • Your learning journey starts here 🦖
+
+  </footer>
 
   <script>
 
-    function helpStudent() {
+    function startProblem() {
 
-      const problem = document.getElementById("problem").value;
+      const problem = document.getElementById("problem").value.trim();
 
-      if (!problem.trim()) {
+      const result = document.getElementById("result");
 
-        document.getElementById("answer").innerHTML =
+      if (!problem) {
 
-          "<p>Please enter a math problem first. 🦖</p>";
+        result.style.display = "block";
+
+        result.innerHTML =
+
+          "<h3>🦖 Let's start!</h3>" +
+
+          "<p>Type your math problem in the box above first.</p>";
 
         return;
 
       }
 
-      document.getElementById("answer").innerHTML =
+      result.style.display = "block";
 
-        "<h3>Let's work on it together! 🦖</h3>" +
+      result.innerHTML =
 
-        "<p>Your problem: " + problem + "</p>" +
+        "<h3>🎯 Great! Let's work on it.</h3>" +
 
-        "<p>Next, we'll add the real AI tutor so Amer can get step-by-step help.</p>";
+        "<p><strong>Your problem:</strong> " +
+
+        escapeHTML(problem) +
+
+        "</p>" +
+
+        "<p>🧠 Our next version will guide you through this problem " +
+
+        "step by step instead of simply giving you the answer.</p>" +
+
+        "<p>You're the mathematician. I'm here to be your coach! 🦖</p>";
+
+    }
+
+    function escapeHTML(text) {
+
+      const div = document.createElement("div");
+
+      div.textContent = text;
+
+      return div.innerHTML;
 
     }
 

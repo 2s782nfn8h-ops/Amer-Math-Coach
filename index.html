@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Amer Math Coach</title>
+
+</head>
+
+<body>
+
+  <h1>🦖 Amer Math Coach</h1>
+
+  <p>Welcome! Let's solve your math problem together.</p>
+
+  <h2>Enter your math problem</h2>
+
+  <textarea
+
+    id="problem"
+
+    rows="5"
+
+    cols="40"
+
+    placeholder="Type your math problem here..."
+
+  ></textarea>
+
+  <br><br>
+
+  <button onclick="helpStudent()">Help Me</button>
+
+  <div id="answer"></div>
+
+  <script>
+
+    function helpStudent() {
+
+      const problem = document.getElementById("problem").value;
+
+      if (!problem.trim()) {
+
+        document.getElementById("answer").innerHTML =
+
+          "<p>Please enter a math problem first. 🦖</p>";
+
+        return;
+
+      }
+
+      document.getElementById("answer").innerHTML =
+
+        "<h3>Let's work on it together! 🦖</h3>" +
+
+        "<p>Your problem: " + problem + "</p>" +
+
+        "<p>Next, we'll add the real AI tutor so Amer can get step-by-step help.</p>";
+
+    }
+
+  </script>
+
+</body>
+
+</html>
